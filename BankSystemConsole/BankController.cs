@@ -22,13 +22,13 @@
         public static void GetAll(List<Bank> bankList)
         {
             Console.Clear();
-            Console.WriteLine("==============================================\n");
+            UtilityController.HorizontalBar();
 
             foreach (var bank in bankList)
             {
                 bank.ShowDetails();
             }
-            Console.WriteLine("==============================================\n");
+            UtilityController.HorizontalBar();
         }
 
         public static void Update(List<Bank> bankList)
@@ -56,9 +56,9 @@
                         case "1":
                             Console.Clear();
 
-                            Console.WriteLine("==============================================\n");
+                            UtilityController.HorizontalBar();
                             foundBank.ShowDetails();
-                            Console.WriteLine("==============================================\n");
+                            UtilityController.HorizontalBar();
 
                             Console.Write("Novo Nome do Banco: ");
                             foundBank.Name = Console.ReadLine();
