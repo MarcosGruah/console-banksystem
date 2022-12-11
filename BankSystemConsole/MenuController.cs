@@ -47,7 +47,7 @@
                     return true;
 
                 case "3":
-                    Console.WriteLine("Atualizar os dados de um banco.");
+                    BankController.Update(bankList);
                     return true;
 
                 case "4":

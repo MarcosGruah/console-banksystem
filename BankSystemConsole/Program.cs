@@ -5,7 +5,7 @@ List<Bank> bankList = new List<Bank>();
 
 Console.WriteLine("Bem Vindo ao Sistema Bancário.\n");
 
-//BankController.SeedDatabase(bankList);
+BankController.SeedDatabase(bankList);
 
 do
 {

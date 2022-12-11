@@ -37,6 +37,43 @@
 
         public static void Update(List<Bank> bankList)
         {
+            Console.Clear();
+            Console.WriteLine("Por favor digite a ID do Banco que deseja atualizar os dados ou digite 2 para listar todos os bancos: ");
+            string input = Console.ReadLine();
+            if (input == "2")
+            {
+                GetAll(bankList);
+            }
+            else
+            {
+                Bank foundBank = bankList.Find(bank => bank.Id.ToString() == input);
+
+                if (foundBank != null)
+                {
+                    Console.WriteLine($"\nVocê tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.\n");
+                    Console.WriteLine("1 - Sim");
+                    Console.WriteLine("2 - Não\n");
+                    string confirmDeletion = Console.ReadLine();
+
+                    switch (confirmDeletion)
+                    {
+                        case "1":
+                            string bankName = foundBank.Name;
+                            //bankList.Remove(bankList.Where(bank => bank.Id.ToString() == input).First());
+                            Console.Clear();
+                            Console.WriteLine($"{bankName} REMOVIDO COM SUCESSO\n");
+                            break;
+
+                        default:
+                            Console.Clear();
+                            break;
+                    }
+                }
+                else
+                {
+                    UtilityController.ErrorMessage("404", "BANCO NÃO ENCONTRADO", "CONFIRA SE O ID DO BANCO QUE DESEJA ATUALIZAR ESTÁ CORRETO");
+                }
+            }
         }
 
         public static void Delete(List<Bank> bankList)
@@ -54,32 +91,28 @@
 
                 if (foundBank != null)
                 {
-                    do
+                    Console.WriteLine($"\nVocê tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.\n");
+                    Console.WriteLine("1 - Sim");
+                    Console.WriteLine("2 - Não\n");
+                    string confirmDeletion = Console.ReadLine();
+
+                    switch (confirmDeletion)
                     {
-                        Console.WriteLine($"\nVocê tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.");
-                        Console.WriteLine("1 - Sim");
-                        Console.WriteLine("2 - Não\n");
-                        string confirmDeletion = Console.ReadLine();
+                        case "1":
+                            string bankName = foundBank.Name;
+                            bankList.Remove(bankList.Where(bank => bank.Id.ToString() == input).First());
+                            Console.Clear();
+                            Console.WriteLine($"{bankName} REMOVIDO COM SUCESSO\n");
+                            break;
 
-                        switch (confirmDeletion)
-                        {
-                            case "1":
-                                string bankName = foundBank.Name;
-                                bankList.Remove(bankList.Where(bank => bank.Id.ToString() == input).First());
-                                Console.Clear();
-                                Console.WriteLine($"\n {bankName} REMOVIDO COM SUCESSO");
-                                break;
-
-                            default:
-                                Console.Clear();
-                                break;
-                        }
-                        break;
-                    } while (true);
+                        default:
+                            Console.Clear();
+                            break;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("BANCO NÃO ENCONTRADO 404");
+                    UtilityController.ErrorMessage("404", "BANCO NÃO ENCONTRADO", "CONFIRA SE O ID DO BANCO QUE DESEJA REMOVER ESTÁ CORRETO");
                 }
             }
         }
