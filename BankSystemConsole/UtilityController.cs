@@ -6,7 +6,7 @@
         {
             Console.Clear();
             Console.WriteLine("==============================================\n");
-            Console.WriteLine($"{statusCode} - {statusMsg}");
+            Console.WriteLine($"{statusCode} - {statusMsg}\n");
             Console.WriteLine($"{descriptionMsg}\n");
             Console.WriteLine("==============================================\n");
         }

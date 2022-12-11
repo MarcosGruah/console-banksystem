@@ -16,7 +16,7 @@
             string bankPhoneNumber = Console.ReadLine();
             bankList.Add(new Bank(bankName, bankCnpj, bankCep, bankPhoneNumber));
             Console.Clear();
-            Console.WriteLine($"{bankName} adicionado com sucesso!\n");
+            Console.WriteLine($"{bankName.ToUpper()} adicionado com sucesso!\n");
         }
 
         public static void GetAll(List<Bank> bankList)
@@ -26,11 +26,7 @@
 
             foreach (var bank in bankList)
             {
-                Console.WriteLine($"ID: {bank.Id}");
-                Console.WriteLine($"Nome: {bank.Name}");
-                Console.WriteLine($"CNPJ: {bank.Cnpj}");
-                Console.WriteLine($"CEP: {bank.Cep}");
-                Console.WriteLine($"Telefone: {bank.PhoneNumber}\n");
+                bank.ShowDetails();
             }
             Console.WriteLine("==============================================\n");
         }
@@ -50,7 +46,7 @@
 
                 if (foundBank != null)
                 {
-                    Console.WriteLine($"\nVocê tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.\n");
+                    Console.WriteLine($"\nVocê tem certeza que deseja atualizar {foundBank.Name}?\n");
                     Console.WriteLine("1 - Sim");
                     Console.WriteLine("2 - Não\n");
                     string confirmDeletion = Console.ReadLine();
@@ -58,10 +54,25 @@
                     switch (confirmDeletion)
                     {
                         case "1":
-                            string bankName = foundBank.Name;
-                            //bankList.Remove(bankList.Where(bank => bank.Id.ToString() == input).First());
                             Console.Clear();
-                            Console.WriteLine($"{bankName} REMOVIDO COM SUCESSO\n");
+
+                            Console.WriteLine("==============================================\n");
+                            foundBank.ShowDetails();
+                            Console.WriteLine("==============================================\n");
+
+                            Console.Write("Novo Nome do Banco: ");
+                            foundBank.Name = Console.ReadLine();
+                            Console.Write($"Novo CNPJ: ");
+                            foundBank.Cnpj = Console.ReadLine();
+                            Console.Write($"Novo CEP: ");
+                            foundBank.Cnpj = Console.ReadLine();
+                            Console.Write($"Novo Telefone: ");
+                            foundBank.Cnpj = Console.ReadLine();
+
+                            Console.Clear();
+
+                            Console.WriteLine($"{foundBank.Name} ATUALIZADO COM SUCESSO\n");
+                            foundBank.ShowDetails();
                             break;
 
                         default:
