@@ -56,7 +56,7 @@
                 {
                     do
                     {
-                        Console.WriteLine($"Você tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.");
+                        Console.WriteLine($"\nVocê tem certeza que deseja remover {foundBank.Name}? Esse processo é irreversível.");
                         Console.WriteLine("1 - Sim");
                         Console.WriteLine("2 - Não\n");
                         string confirmDeletion = Console.ReadLine();
@@ -64,11 +64,14 @@
                         switch (confirmDeletion)
                         {
                             case "1":
+                                string bankName = foundBank.Name;
                                 bankList.Remove(bankList.Where(bank => bank.Id.ToString() == input).First());
-                                Console.WriteLine("DELETED");
+                                Console.Clear();
+                                Console.WriteLine($"\n {bankName} REMOVIDO COM SUCESSO");
                                 break;
 
                             default:
+                                Console.Clear();
                                 break;
                         }
                         break;
