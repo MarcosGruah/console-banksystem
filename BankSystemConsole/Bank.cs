@@ -12,6 +12,7 @@ namespace BankSystemConsole
             Cep = Regex.Replace(cep, "[^0-9]", "");
             PhoneNumber = Regex.Replace(phoneNumber, "[^0-9]", "");
         }
+
         public Guid Id { get; set; }
         public string Name { get; }
         public string Cnpj { get; }
