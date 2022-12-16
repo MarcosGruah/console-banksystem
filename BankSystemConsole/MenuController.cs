@@ -2,17 +2,17 @@
 {
     internal static class MenuController
     {
-        public static bool EmptyDBMenu(List<Bank> bankList)
+        public static bool EmptyDBMenu(List<User> userDB)
         {
-            Console.WriteLine("Não detectamos nenhum Banco registrado no nosso sistema.\n");
-            Console.WriteLine("1 - Registrar um novo banco.");
+            Console.WriteLine("Não detectamos nenhum usuário registrado no nosso sistema.\n");
+            Console.WriteLine("1 - Registrar um novo usuário.");
             Console.WriteLine("0 - Sair\n");
             string input = Console.ReadLine();
             Console.WriteLine();
             switch (input)
             {
                 case "1":
-                    BankController.Create(bankList);
+                    UserController.Create(userDB);
                     return true;
 
                 case "0":
@@ -27,31 +27,31 @@
             }
         }
 
-        public static bool MainMenu(List<Bank> bankList)
+        public static bool MainMenu(List<User> userDB)
         {
-            Console.WriteLine("1 - Registrar um novo banco.");
-            Console.WriteLine("2 - Ver a lista de bancos registrados.");
-            Console.WriteLine("3 - Atualizar os dados de um banco.");
-            Console.WriteLine("4 - Remover um banco do sistema.");
+            Console.WriteLine("1 - Registrar um novo usuário.");
+            Console.WriteLine("2 - Ver a lista de usuários registrados.");
+            Console.WriteLine("3 - Atualizar os dados de um usuário.");
+            Console.WriteLine("4 - Remover um usuário do sistema.");
             Console.WriteLine("0 - Sair\n");
             string input = Console.ReadLine();
             Console.WriteLine();
             switch (input)
             {
                 case "1":
-                    BankController.Create(bankList);
+                    UserController.Create(userDB);
                     return true;
 
                 case "2":
-                    BankController.GetAll(bankList);
+                    UserController.GetAll(userDB);
                     return true;
 
                 case "3":
-                    BankController.Update(bankList);
+                    UserController.Update(userDB);
                     return true;
 
                 case "4":
-                    BankController.Delete(bankList);
+                    UserController.Delete(userDB);
                     return true;
 
                 case "0":

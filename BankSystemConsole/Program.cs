@@ -1,20 +1,20 @@
 ﻿using BankSystemConsole;
 
-bool isAppRunning;
-List<Bank> bankList = new List<Bank>();
+bool isAppRunning = true;
+List<User> userDB = new List<User>();
 
 Console.WriteLine("Bem Vindo ao Sistema Bancário.\n");
 
-BankController.SeedDatabase(bankList);
+UserController.SeedDatabase(userDB);
 
-do
+while (isAppRunning)
 {
-    if (bankList.Count == 0)
+    if (userDB.Count == 0)
     {
-        isAppRunning = MenuController.EmptyDBMenu(bankList);
+        isAppRunning = MenuController.EmptyDBMenu(userDB);
     }
     else
     {
-        isAppRunning = MenuController.MainMenu(bankList);
+        isAppRunning = MenuController.MainMenu(userDB);
     }
-} while (isAppRunning);
+}
