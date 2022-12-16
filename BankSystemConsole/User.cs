@@ -45,8 +45,8 @@ namespace BankSystemConsole
 
         public string Cpf
         {
-            // 999.999.999-99
-            get { return _cpf.Substring(0, 3) + "." + _cpf.Substring(3, 3) + "." + _cpf.Substring(5, 3) + "-" + _cpf.Substring(7, 2); }
+            // XXX.XXX.XXX-XX
+            get { return $"{_cpf.Substring(0, 3)}.{_cpf.Substring(3, 3)}.{_cpf.Substring(6, 3)}-{_cpf.Substring(9, 2)}"; }
             set { _cpf = Regex.Replace(value, "[^0-9]", ""); }
         }
 
@@ -58,8 +58,8 @@ namespace BankSystemConsole
 
         public string CellphoneNumber
         {
-            // (00) 99999-9999
-            get { return "(" + _cellphoneNumber.Substring(0, 2) + ") " + _cellphoneNumber.Substring(2, 5) + "-" + _cellphoneNumber.Substring(7, 4); }
+            // (XX) X XXXX-XXXX
+            get { return $"({_cellphoneNumber.Substring(0, 2)}) {_cellphoneNumber.Substring(2, 1)} {_cellphoneNumber.Substring(3, 4)}-{_cellphoneNumber.Substring(7, 4)}"; }
             set { _cellphoneNumber = Regex.Replace(value, "[^0-9]", ""); }
         }
 
