@@ -32,7 +32,7 @@ namespace BankSystemConsole.Controller
 
             foreach (var user in userDB)
             {
-                user.ShowDetails();
+                user.ShowDetailsSimple();
             }
 
             UtilityController.HorizontalBar();
@@ -64,7 +64,7 @@ namespace BankSystemConsole.Controller
                             Console.Clear();
 
                             UtilityController.HorizontalBar();
-                            foundUser.ShowDetails();
+                            foundUser.ShowDetailsFull();
                             UtilityController.HorizontalBar();
 
                             Console.Write("Novo Celular: ");
@@ -77,7 +77,7 @@ namespace BankSystemConsole.Controller
                             Console.Clear();
 
                             Console.WriteLine($"{foundUser.FullName} ATUALIZADO COM SUCESSO\n");
-                            foundUser.ShowDetails();
+                            foundUser.ShowDetailsFull();
                             break;
 
                         default:

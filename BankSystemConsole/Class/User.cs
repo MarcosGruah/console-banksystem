@@ -65,15 +65,21 @@ namespace BankSystemConsole.Class
             Password = password;
         }
 
-        public void ShowDetails()
+        public void ShowDetailsSimple()
         {
-            Console.WriteLine($"ID: {Id} ");
-            Console.WriteLine($"Nome: {FullName} ");
-            Console.WriteLine($"Data de Nascimento: {BirthDate} ");
-            Console.WriteLine($"CPF: {Cpf} ");
-            Console.WriteLine($"Celular: {CellphoneNumber} ");
-            Console.WriteLine($"Email: {Email} \n");
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"Nome: {FullName}\n");
         }
+        public void ShowDetailsFull()
+        {
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"Nome: {FullName}");
+            Console.WriteLine($"Data de Nascimento: {BirthDate}");
+            Console.WriteLine($"CPF: {Cpf}");
+            Console.WriteLine($"Celular: {CellphoneNumber}");
+            Console.WriteLine($"Email: {Email}\n");
+        }
+
 
         private string FormatCpf()
         {
