@@ -1,4 +1,4 @@
-﻿namespace BankSystemConsole
+﻿namespace BankSystemConsole.Controller
 {
     internal static class UtilityController
     {

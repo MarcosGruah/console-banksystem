@@ -1,4 +1,6 @@
-﻿namespace BankSystemConsole
+﻿using BankSystemConsole.Class;
+
+namespace BankSystemConsole.Controller
 {
     internal static class MenuController
     {
