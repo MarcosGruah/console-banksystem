@@ -38,6 +38,34 @@ namespace BankSystemConsole.Controller
             UtilityController.HorizontalBar();
         }
 
+        public static void GetSpecific(List<User> userDB)
+        {
+            Console.Clear();
+            Console.WriteLine("Por favor digite a ID do usuário que deseja ver mais detalhes ou digite 2 para listar todos os usuários: ");
+            string input = Console.ReadLine();
+            if (input == "2")
+            {
+                GetAll(userDB);
+            }
+            else
+            {
+                User foundUser = userDB.Find(user => user.Id.ToString() == input);
+
+                if (foundUser != null)
+                {
+                    Console.Clear();
+
+                    UtilityController.HorizontalBar();
+                    foundUser.ShowDetailsFull();
+                    UtilityController.HorizontalBar();
+                }
+                else
+                {
+                    UtilityController.ErrorMessage("404", "USUÁRIO NÃO ENCONTRADO", "CONFIRA SE O ID DO USUÁRIO QUE DESEJA REMOVER ESTÁ CORRETO");
+                }
+            }
+        }
+
         public static void Update(List<User> userDB)
         {
             Console.Clear();
