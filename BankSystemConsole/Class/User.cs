@@ -70,6 +70,7 @@ namespace BankSystemConsole.Class
             Console.WriteLine($"ID: {Id}");
             Console.WriteLine($"Nome: {FullName}\n");
         }
+
         public void ShowDetailsFull()
         {
             Console.WriteLine($"ID: {Id}");
@@ -79,7 +80,6 @@ namespace BankSystemConsole.Class
             Console.WriteLine($"Celular: {CellphoneNumber}");
             Console.WriteLine($"Email: {Email}\n");
         }
-
 
         private string FormatCpf()
         {

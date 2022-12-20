@@ -29,7 +29,7 @@ namespace BankSystemConsole.Controller
             }
         }
 
-        public static bool MainMenu(List<User> userDB)
+        public static bool AdminMenu(List<User> userDB)
         {
             Console.WriteLine("1 - Registrar um novo usuário.");
             Console.WriteLine("2 - Ver detalhes de um usuário.");
@@ -64,6 +64,30 @@ namespace BankSystemConsole.Controller
 
                 case "5":
                     UserController.GetAll(userDB);
+                    return true;
+
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Opção invalida.\n");
+                    return true;
+            }
+        }
+
+        public static bool UserMenu(List<User> userDB)
+        {
+            Console.WriteLine("1 - USER MENU");
+            Console.WriteLine("0 - Sair\n");
+            string input = Console.ReadLine();
+            Console.WriteLine();
+            switch (input)
+            {
+                case "0":
+                    Console.Clear();
+                    Console.WriteLine("Saindo do programa.");
+                    return false;
+
+                case "1":
+                    Console.WriteLine("USER MENU STUFF");
                     return true;
 
                 default:
