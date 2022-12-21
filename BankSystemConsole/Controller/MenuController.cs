@@ -4,7 +4,7 @@ namespace BankSystemConsole.Controller
 {
     internal static class MenuController
     {
-        public static bool EmptyDBMenu(List<User> userDB)
+        public static void EmptyDBMenu(List<User> userDB)
         {
             Console.WriteLine("Não detectamos nenhum usuário registrado no nosso sistema.\n");
             Console.WriteLine("1 - Registrar um novo usuário.");
@@ -15,21 +15,20 @@ namespace BankSystemConsole.Controller
             {
                 case "1":
                     UserController.Create(userDB);
-                    return true;
+                    break;
 
                 case "0":
                     Console.Clear();
                     Console.WriteLine("Programa finalizado.");
-                    return false;
+                    break;
 
                 default:
-                    Console.Clear();
-                    Console.WriteLine("Opção invalida.\n");
-                    return true;
+                    UtilityController.InvalidOption();
+                    break;
             }
         }
 
-        public static bool AdminMenu(List<User> userDB)
+        public static void AdminMenu(List<User> userDB)
         {
             Console.WriteLine("1 - Registrar um novo usuário.");
             Console.WriteLine("2 - Ver detalhes de um usuário.");
@@ -42,38 +41,36 @@ namespace BankSystemConsole.Controller
             switch (input)
             {
                 case "0":
-                    Console.Clear();
-                    Console.WriteLine("Saindo do programa.");
-                    return false;
+                    UtilityController.ClosingProgram();
+                    break;
 
                 case "1":
                     UserController.Create(userDB);
-                    return true;
+                    break;
 
                 case "2":
                     UserController.GetSpecific(userDB);
-                    return true;
+                    break;
 
                 case "3":
                     UserController.Update(userDB);
-                    return true;
+                    break;
 
                 case "4":
                     UserController.Delete(userDB);
-                    return true;
+                    break;
 
                 case "5":
                     UserController.GetAll(userDB);
-                    return true;
+                    break;
 
                 default:
-                    Console.Clear();
-                    Console.WriteLine("Opção invalida.\n");
-                    return true;
+                    UtilityController.InvalidOption();
+                    break;
             }
         }
 
-        public static bool UserMenu(List<User> userDB)
+        public static void UserMenu(List<User> userDB)
         {
             Console.WriteLine("1 - USER MENU");
             Console.WriteLine("0 - Sair\n");
@@ -82,18 +79,16 @@ namespace BankSystemConsole.Controller
             switch (input)
             {
                 case "0":
-                    Console.Clear();
-                    Console.WriteLine("Saindo do programa.");
-                    return false;
+                    UtilityController.ClosingProgram();
+                    break;
 
                 case "1":
                     Console.WriteLine("USER MENU STUFF");
-                    return true;
+                    break;
 
                 default:
-                    Console.Clear();
-                    Console.WriteLine("Opção invalida.\n");
-                    return true;
+                    UtilityController.InvalidOption();
+                    break;
             }
         }
     }

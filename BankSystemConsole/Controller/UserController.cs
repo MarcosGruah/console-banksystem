@@ -169,7 +169,7 @@ namespace BankSystemConsole.Controller
             userDB.Add(new User("Elza Luzia Ayla Caldeira", "502.129.381-85", "13/12/1962", "(82) 99134-9650", "elza.luzia.caldeira@gmail.com", "12345678"));
             userDB.Add(new User("Nicole Kamilly Joana da Luz", "516.516.331-85", "19/01/1991", "(85) 98788-5803", "nicolekamillydaluz@gmail.com", "12345678"));
 
-            Console.WriteLine(userDB.Count == 1 ? $"Existe {userDB.Count} usuário registrado no sistema.\n" : $"Existem {userDB.Count} usuários registrados no sistema.\n");
+            //Console.WriteLine(userDB.Count == 1 ? $"Existe {userDB.Count} usuário registrado no sistema.\n" : $"Existem {userDB.Count} usuários registrados no sistema.\n");
         }
     }
 }

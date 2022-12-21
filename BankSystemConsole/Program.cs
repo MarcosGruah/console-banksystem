@@ -1,30 +1,29 @@
 ﻿using BankSystemConsole.Class;
 using BankSystemConsole.Controller;
 
-bool isAppRunning = true;
-
 List<User> userDB = new List<User>();
+App.IsAppRunning = true;
 
 Console.WriteLine("Bem Vindo ao Sistema Bancário.\n");
 
 UserController.SeedDatabase(userDB);
 
-Console.WriteLine("USER OR ADMIN?");
-string input = Console.ReadLine();
+string input = App.AccessLevelCheck();
 
-while (isAppRunning)
+while (App.IsAppRunning)
 {
-    if (input == "admin")
+    switch (input)
     {
-        //isAppRunning = MenuController.AdminMenu(userDB, ref isAppRunning);
-    }
-    else if (input == "user")
-    {
-        isAppRunning = MenuController.UserMenu(userDB);
-    }
-    else
-    {
-        Console.Clear();
-        Console.WriteLine("INVALID OPTION.\n");
+        case "1":
+            MenuController.AdminMenu(userDB);
+            break;
+
+        case "2":
+            MenuController.UserMenu(userDB);
+            break;
+
+        default:
+            Console.WriteLine("Opção invalida.");
+            break;
     }
 }
