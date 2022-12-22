@@ -4,31 +4,7 @@ namespace BankSystemConsole.Controller
 {
     internal static class MenuController
     {
-        public static void EmptyDBMenu(List<User> userDB)
-        {
-            Console.WriteLine("Não detectamos nenhum usuário registrado no nosso sistema.\n");
-            Console.WriteLine("1 - Registrar um novo usuário.");
-            Console.WriteLine("0 - Sair\n");
-            string input = Console.ReadLine();
-            Console.WriteLine();
-            switch (input)
-            {
-                case "1":
-                    UserController.Create(userDB);
-                    break;
-
-                case "0":
-                    Console.Clear();
-                    Console.WriteLine("Programa finalizado.");
-                    break;
-
-                default:
-                    UtilityController.InvalidOption();
-                    break;
-            }
-        }
-
-        public static void AdminMenu(List<User> userDB)
+        public static void AdminMenu()
         {
             Console.WriteLine("1 - Registrar um novo usuário.");
             Console.WriteLine("2 - Ver detalhes de um usuário.");
@@ -45,23 +21,23 @@ namespace BankSystemConsole.Controller
                     break;
 
                 case "1":
-                    UserController.Create(userDB);
+                    UserController.Create();
                     break;
 
                 case "2":
-                    UserController.GetSpecific(userDB);
+                    UserController.GetSpecific();
                     break;
 
                 case "3":
-                    UserController.Update(userDB);
+                    UserController.Update();
                     break;
 
                 case "4":
-                    UserController.Delete(userDB);
+                    UserController.Delete();
                     break;
 
                 case "5":
-                    UserController.GetAll(userDB);
+                    UserController.GetAll();
                     break;
 
                 default:
@@ -70,7 +46,7 @@ namespace BankSystemConsole.Controller
             }
         }
 
-        public static void UserMenu(List<User> userDB)
+        public static void UserMenu()
         {
             Console.WriteLine("1 - USER MENU");
             Console.WriteLine("0 - Sair\n");
@@ -89,6 +65,48 @@ namespace BankSystemConsole.Controller
                 default:
                     UtilityController.InvalidOption();
                     break;
+            }
+        }
+
+        public static void EmptyDBMenu()
+        {
+            bool continueLoop = true;
+            while (continueLoop)
+            {
+                if (Database.UserDB.Count == 0)
+                {
+                    Console.WriteLine("Não detectamos nenhum usuário registrado no Banco de Dados\n");
+                    Console.WriteLine("1 - Registrar 5 usuários para testes.");
+                    Console.WriteLine("0 - Continuar com o Banco de Dados vazio.\n");
+                    string input = Console.ReadLine();
+                    Console.WriteLine();
+                    switch (input)
+                    {
+                        case "1":
+                            Console.Clear();
+                            Database.UserDB.Add(new User("Breno Nelson Lima", "737.127.862-39", "06/02/1992", "(82) 99251-3958", "brenonelsonlima@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Edson Marcelo Almada", "439.748.289-66", "21/05/1999", "(69) 98657-7221", "edson_almada@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Silvana Heloise Drumond", "976.645.964-91", "04/10/1967", "(81) 98704-4490", "silvana.heloise.drumond@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Elza Luzia Ayla Caldeira", "502.129.381-85", "13/12/1962", "(82) 99134-9650", "elza.luzia.caldeira@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Nicole Kamilly Joana da Luz", "516.516.331-85", "19/01/1991", "(85) 98788-5803", "nicolekamillydaluz@gmail.com", "12345678"));
+                            DatabaseController.SaveAndReloadDatabase();
+                            continueLoop = false;
+                            break;
+
+                        case "0":
+                            Console.Clear();
+                            continueLoop = false;
+                            break;
+
+                        default:
+                            UtilityController.InvalidOption();
+                            break;
+                    }
+                }
+                else
+                {
+                    continueLoop = false;
+                }
             }
         }
     }

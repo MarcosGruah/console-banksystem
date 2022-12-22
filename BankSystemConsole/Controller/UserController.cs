@@ -4,7 +4,7 @@ namespace BankSystemConsole.Controller
 {
     internal static class UserController
     {
-        public static void Create(List<User> userDB)
+        public static void Create()
         {
             Console.Clear();
             Console.WriteLine("Certo, vou lhe orientar como criar a sua conta!\n");
@@ -20,36 +20,38 @@ namespace BankSystemConsole.Controller
             string userEmail = Console.ReadLine();
             Console.Write("Senha: ");
             string userPassword = Console.ReadLine();
-            userDB.Add(new User(userFullname, userCpf, userBirthDate, userCellphoneNumber, userEmail, userPassword));
+            Database.UserDB.Add(new User(userFullname, userCpf, userBirthDate, userCellphoneNumber, userEmail, userPassword));
             Console.Clear();
             Console.WriteLine($"{userFullname.ToUpper()} adicionado com sucesso!\n");
+            DatabaseController.SaveAndReloadDatabase();
         }
 
-        public static void GetAll(List<User> userDB)
+        public static void GetAll()
         {
             Console.Clear();
             UtilityController.HorizontalBar();
 
-            foreach (var user in userDB)
+            foreach (var user in Database.UserDB)
             {
                 user.ShowDetailsSimple();
             }
-
+            UtilityController.HorizontalBar();
+            Database.UserCount();
             UtilityController.HorizontalBar();
         }
 
-        public static void GetSpecific(List<User> userDB)
+        public static void GetSpecific()
         {
             Console.Clear();
             Console.WriteLine("Por favor digite a ID do usuário que deseja ver mais detalhes ou digite 2 para listar todos os usuários: ");
             string input = Console.ReadLine();
             if (input == "2")
             {
-                GetAll(userDB);
+                GetAll();
             }
             else
             {
-                User foundUser = userDB.Find(user => user.Id.ToString() == input);
+                User foundUser = Database.UserDB.Find(user => user.Id.ToString() == input);
 
                 if (foundUser != null)
                 {
@@ -66,18 +68,18 @@ namespace BankSystemConsole.Controller
             }
         }
 
-        public static void Update(List<User> userDB)
+        public static void Update()
         {
             Console.Clear();
             Console.WriteLine("Por favor digite a ID do usuário que deseja atualizar os dados ou digite 2 para listar todos os usuários: ");
             string input = Console.ReadLine();
             if (input == "2")
             {
-                GetAll(userDB);
+                GetAll();
             }
             else
             {
-                User foundUser = userDB.Find(user => user.Id.ToString() == input);
+                User foundUser = Database.UserDB.Find(user => user.Id.ToString() == input);
 
                 if (foundUser != null)
                 {
@@ -103,7 +105,7 @@ namespace BankSystemConsole.Controller
                             foundUser.Password = Console.ReadLine();
 
                             Console.Clear();
-
+                            DatabaseController.SaveAndReloadDatabase();
                             Console.WriteLine($"{foundUser.FullName} ATUALIZADO COM SUCESSO\n");
                             foundUser.ShowDetailsFull();
                             break;
@@ -120,18 +122,18 @@ namespace BankSystemConsole.Controller
             }
         }
 
-        public static void Delete(List<User> userDB)
+        public static void Delete()
         {
             Console.Clear();
             Console.WriteLine("Por favor digite a ID do usuário que deseja remover ou digite 2 para listar todos os usuários: ");
             string input = Console.ReadLine();
             if (input == "2")
             {
-                GetAll(userDB);
+                GetAll();
             }
             else
             {
-                User foundUser = userDB.Find(user => user.Id.ToString() == input);
+                User foundUser = Database.UserDB.Find(user => user.Id.ToString() == input);
 
                 if (foundUser != null)
                 {
@@ -144,8 +146,9 @@ namespace BankSystemConsole.Controller
                     {
                         case "1":
                             string userName = foundUser.FullName;
-                            userDB.Remove(userDB.Where(user => user.Id.ToString() == input).First());
+                            Database.UserDB.Remove(Database.UserDB.Where(user => user.Id.ToString() == input).First());
                             Console.Clear();
+                            DatabaseController.SaveAndReloadDatabase();
                             Console.WriteLine($"{userName} REMOVIDO COM SUCESSO\n");
                             break;
 
@@ -159,17 +162,6 @@ namespace BankSystemConsole.Controller
                     UtilityController.ErrorMessage("404", "USUÁRIO NÃO ENCONTRADO", "CONFIRA SE O ID DO USUÁRIO QUE DESEJA REMOVER ESTÁ CORRETO");
                 }
             }
-        }
-
-        public static void SeedDatabase(List<User> userDB)
-        {
-            userDB.Add(new User("Breno Nelson Lima", "737.127.862-39", "06/02/1992", "(82) 99251-3958", "brenonelsonlima@gmail.com", "12345678"));
-            userDB.Add(new User("Edson Marcelo Almada", "439.748.289-66", "21/05/1999", "(69) 98657-7221", "edson_almada@gmail.com", "12345678"));
-            userDB.Add(new User("Silvana Heloise Drumond", "976.645.964-91", "04/10/1967", "(81) 98704-4490", "silvana.heloise.drumond@gmail.com", "12345678"));
-            userDB.Add(new User("Elza Luzia Ayla Caldeira", "502.129.381-85", "13/12/1962", "(82) 99134-9650", "elza.luzia.caldeira@gmail.com", "12345678"));
-            userDB.Add(new User("Nicole Kamilly Joana da Luz", "516.516.331-85", "19/01/1991", "(85) 98788-5803", "nicolekamillydaluz@gmail.com", "12345678"));
-
-            //Console.WriteLine(userDB.Count == 1 ? $"Existe {userDB.Count} usuário registrado no sistema.\n" : $"Existem {userDB.Count} usuários registrados no sistema.\n");
         }
     }
 }

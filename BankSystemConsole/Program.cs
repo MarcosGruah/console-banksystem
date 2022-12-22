@@ -1,12 +1,13 @@
 ﻿using BankSystemConsole.Class;
 using BankSystemConsole.Controller;
 
-List<User> userDB = new List<User>();
+Database.UserDB = DatabaseController.LoadUsersFromDatabase();
+
 App.IsAppRunning = true;
 
-Console.WriteLine("Bem Vindo ao Sistema Bancário.\n");
+DatabaseController.SeedDatabase();
 
-UserController.SeedDatabase(userDB);
+Console.WriteLine("Bem Vindo ao Sistema Bancário.\n");
 
 string input = App.AccessLevelCheck();
 
@@ -15,11 +16,11 @@ while (App.IsAppRunning)
     switch (input)
     {
         case "1":
-            MenuController.AdminMenu(userDB);
+            MenuController.AdminMenu();
             break;
 
         case "2":
-            MenuController.UserMenu(userDB);
+            MenuController.UserMenu();
             break;
 
         default:
