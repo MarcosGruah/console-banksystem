@@ -8,7 +8,7 @@ namespace BankSystemConsole.Class
         private Guid _id = Guid.NewGuid();
         private string _fullName;
         private string _cpf;
-        private string _birthDate;
+        private DateTime _birthDate;
         private string _cellphoneNumber;
         private string _email;
         private string _password;
@@ -30,7 +30,7 @@ namespace BankSystemConsole.Class
             set { _cpf = Regex.Replace(value, "[^0-9]", ""); }
         }
 
-        public string BirthDate
+        public DateTime BirthDate
         {
             get { return _birthDate; }
             set { _birthDate = value; }
@@ -54,7 +54,7 @@ namespace BankSystemConsole.Class
             set { _password = value; }
         }
 
-        public User(string fullName, string cpf, string birthDate, string cellphoneNumber, string email, string password)
+        public User(string fullName, string cpf, DateTime birthDate, string cellphoneNumber, string email, string password)
         {
             FullName = fullName;
             Cpf = cpf;

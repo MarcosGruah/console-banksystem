@@ -84,11 +84,11 @@ namespace BankSystemConsole.Controller
                     {
                         case "1":
                             Console.Clear();
-                            Database.UserDB.Add(new User("Breno Nelson Lima", "737.127.862-39", "06/02/1992", "(82) 99251-3958", "brenonelsonlima@gmail.com", "12345678"));
-                            Database.UserDB.Add(new User("Edson Marcelo Almada", "439.748.289-66", "21/05/1999", "(69) 98657-7221", "edson_almada@gmail.com", "12345678"));
-                            Database.UserDB.Add(new User("Silvana Heloise Drumond", "976.645.964-91", "04/10/1967", "(81) 98704-4490", "silvana.heloise.drumond@gmail.com", "12345678"));
-                            Database.UserDB.Add(new User("Elza Luzia Ayla Caldeira", "502.129.381-85", "13/12/1962", "(82) 99134-9650", "elza.luzia.caldeira@gmail.com", "12345678"));
-                            Database.UserDB.Add(new User("Nicole Kamilly Joana da Luz", "516.516.331-85", "19/01/1991", "(85) 98788-5803", "nicolekamillydaluz@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Breno Nelson Lima", "737.127.862-39", DateTime.Parse("06/02/1992"), "(82) 99251-3958", "brenonelsonlima@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Edson Marcelo Almada", "439.748.289-66", DateTime.Parse("21/05/1999"), "(69) 98657-7221", "edson_almada@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Silvana Heloise Drumond", "976.645.964-91", DateTime.Parse("04/10/1967"), "(81) 98704-4490", "silvana.heloise.drumond@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Elza Luzia Ayla Caldeira", "502.129.381-85", DateTime.Parse("13/12/1962"), "(82) 99134-9650", "elza.luzia.caldeira@gmail.com", "12345678"));
+                            Database.UserDB.Add(new User("Nicole Kamilly Joana da Luz", "516.516.331-85", DateTime.Parse("19/01/1991"), "(85) 98788-5803", "nicolekamillydaluz@gmail.com", "12345678"));
                             DatabaseController.SaveAndReloadDatabase();
                             continueLoop = false;
                             break;

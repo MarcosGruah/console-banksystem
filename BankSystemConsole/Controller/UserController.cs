@@ -1,4 +1,5 @@
 ﻿using BankSystemConsole.Class;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace BankSystemConsole.Controller
@@ -7,17 +8,18 @@ namespace BankSystemConsole.Controller
     {
         public static void Create()
         {
-            string userFullname, userCpf, userBirthDate, userCellphoneNumber, userEmail, userPassword;
-            bool invalidBirthDate = true;
+            string userFullname, userCpf, userCellphoneNumber, userEmail, userPassword;
+            DateTime userBirthDate;
             bool invalidCellphoneNumber = true;
             bool invalidUserEmail = true;
             bool invalidPassword = true;
             Console.Clear();
 
-            userFullname = ValidateUserFullname();
-            userCpf = ValidateUserCpf();
-            Console.Write("Data de Nascimento: ");
-            userBirthDate = Console.ReadLine();
+            userFullname = "Test Testson"; //ValidateUserFullname();
+            userCpf = "12345678912"; //ValidateUserCpf();
+
+            userBirthDate = ValidateBirthDate();
+
             Console.Write("Celular: ");
             userCellphoneNumber = Console.ReadLine();
             Console.Write("Email: ");
@@ -344,6 +346,65 @@ namespace BankSystemConsole.Controller
             } while (invalidCpf);
 
             return userCpf;
+        }
+
+        private static DateTime ValidateBirthDate()
+        {
+            DateTime date;
+            string userBirthDate;
+            bool invalidBirthDate = true;
+
+            do
+            {
+                Console.WriteLine("Para criar a sua conta eu preciso dos seus seguintes dados: \n");
+                Console.Write("Data de Nascimento (dd/MM/yyyy): ");
+                userBirthDate = Console.ReadLine();
+
+                if (DateTime.TryParse(userBirthDate, out date))
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Você nasceu no dia {date.Day} de {date.ToString("MMMM", new CultureInfo("pt-BR"))} de {date.Year}?\n");
+                    Console.WriteLine("1 - Sim");
+                    Console.WriteLine("2 - Não\n");
+
+                    string confirmDate = Console.ReadLine();
+                    do
+                    {
+                        switch (confirmDate)
+                        {
+                            case "1":
+                                Console.Clear();
+                                invalidBirthDate = false;
+                                break;
+
+                            case "2":
+                                Console.Clear();
+                                break;
+
+                            default:
+                                UtilityController.InvalidOption();
+                                Console.WriteLine($"Você nasceu no dia {date.Day} de {date.ToString("MMMM", new CultureInfo("pt-BR"))} de {date.Year}?\n");
+                                Console.WriteLine("1 - Sim");
+                                Console.WriteLine("2 - Não\n");
+
+                                confirmDate = Console.ReadLine();
+                                if (confirmDate == "1")
+                                {
+                                    invalidBirthDate = false;
+                                }
+                                Console.Clear();
+                                break;
+                        }
+                    } while (confirmDate != "1" && confirmDate != "2");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine($"\"{userBirthDate}\" Não é um formato de Data válido. Tente novamente.\n");
+                }
+            } while (invalidBirthDate);
+
+            return date;
         }
     }
 }
