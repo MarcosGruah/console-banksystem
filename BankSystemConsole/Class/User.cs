@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using BankSystemConsole.Controller;
+using System.Text.RegularExpressions;
 
 namespace BankSystemConsole.Class
 {
@@ -25,8 +26,7 @@ namespace BankSystemConsole.Class
 
         public string Cpf
         {
-            // XXX.XXX.XXX-XX
-            get { return FormatCpf(); }
+            get { return UtilityController.FormatCpf(_cpf); }
             set { _cpf = Regex.Replace(value, "[^0-9]", ""); }
         }
 
@@ -38,8 +38,7 @@ namespace BankSystemConsole.Class
 
         public string CellphoneNumber
         {
-            // (XX) X XXXX-XXXX
-            get { return FormatCellphoneNumber(); }
+            get { return UtilityController.FormatCellphoneNumber(_cellphoneNumber); }
             set { _cellphoneNumber = Regex.Replace(value, "[^0-9]", ""); }
         }
 
@@ -79,16 +78,6 @@ namespace BankSystemConsole.Class
             Console.WriteLine($"CPF: {Cpf}");
             Console.WriteLine($"Celular: {CellphoneNumber}");
             Console.WriteLine($"Email: {Email}\n");
-        }
-
-        private string FormatCpf()
-        {
-            return $"{_cpf.Substring(0, 3)}.{_cpf.Substring(3, 3)}.{_cpf.Substring(6, 3)}-{_cpf.Substring(9, 2)}";
-        }
-
-        private string FormatCellphoneNumber()
-        {
-            return $"({_cellphoneNumber.Substring(0, 2)}) {_cellphoneNumber.Substring(2, 1)} {_cellphoneNumber.Substring(3, 4)}-{_cellphoneNumber.Substring(7, 4)}";
         }
     }
 }

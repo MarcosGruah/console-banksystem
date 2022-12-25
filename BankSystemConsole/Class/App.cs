@@ -5,11 +5,18 @@ namespace BankSystemConsole.Class
     internal static class App
     {
         private static bool _isAppRunning;
+        private static bool _realLifeCpfValidation;
 
         public static bool IsAppRunning
         {
             get { return _isAppRunning; }
             set { _isAppRunning = value; }
+        }
+
+        public static bool RealLifeCpfValidation
+        {
+            get { return _realLifeCpfValidation; }
+            set { _realLifeCpfValidation = value; }
         }
 
         public static string AccessLevelCheck()
@@ -18,7 +25,7 @@ namespace BankSystemConsole.Class
             {
                 Console.WriteLine("Você deseja acessar o aplicativo como Administrador ou Usuário?\n");
                 Console.WriteLine("1 - Administrador");
-                Console.WriteLine("2 - Usuário");
+                Console.WriteLine("2 - Usuário\n");
 
                 string input = Console.ReadLine();
 

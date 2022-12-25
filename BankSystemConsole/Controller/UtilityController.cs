@@ -4,6 +4,18 @@ namespace BankSystemConsole.Controller
 {
     internal static class UtilityController
     {
+        public static string FormatCpf(string _cpf)
+        {
+            // XXX.XXX.XXX-XX
+            return $"{_cpf.Substring(0, 3)}.{_cpf.Substring(3, 3)}.{_cpf.Substring(6, 3)}-{_cpf.Substring(9, 2)}";
+        }
+
+        public static string FormatCellphoneNumber(string _cellphoneNumber)
+        {
+            // (XX) X XXXX-XXXX
+            return $"({_cellphoneNumber.Substring(0, 2)}) {_cellphoneNumber.Substring(2, 1)} {_cellphoneNumber.Substring(3, 4)}-{_cellphoneNumber.Substring(7, 4)}";
+        }
+
         public static void ClosingProgram()
         {
             App.IsAppRunning = false;

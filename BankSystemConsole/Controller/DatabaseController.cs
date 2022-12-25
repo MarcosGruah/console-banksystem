@@ -26,8 +26,6 @@ namespace BankSystemConsole.Controller
         public static void SeedDatabase()
         {
             MenuController.EmptyDBMenu();
-
-
         }
     }
 }

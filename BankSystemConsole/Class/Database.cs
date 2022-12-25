@@ -10,7 +10,6 @@
             set { _userDB = value; }
         }
 
-
         public static void UserCount()
         {
             Console.WriteLine(_userDB.Count == 1 ? $"Existe {_userDB.Count} usuário registrado no sistema.\n" : $"Existem {_userDB.Count} usuários registrados no sistema.\n");

@@ -4,6 +4,7 @@ using BankSystemConsole.Controller;
 Database.UserDB = DatabaseController.LoadUsersFromDatabase();
 
 App.IsAppRunning = true;
+App.RealLifeCpfValidation = true;
 
 DatabaseController.SeedDatabase();
 
