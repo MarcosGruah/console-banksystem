@@ -48,7 +48,8 @@ namespace BankSystemConsole.Controller
 
         public static void UserMenu()
         {
-            Console.WriteLine("1 - USER MENU");
+            Console.WriteLine("Esta funcionalidade ou recurso ainda não foi implementado.\n");
+            Console.WriteLine("1 - Administrador");
             Console.WriteLine("0 - Sair\n");
             string input = Console.ReadLine();
             Console.WriteLine();
@@ -59,7 +60,9 @@ namespace BankSystemConsole.Controller
                     break;
 
                 case "1":
-                    Console.WriteLine("USER MENU STUFF");
+                    Console.Clear();
+                    Console.WriteLine("Bem vindo ao Painel do Administrador\n");
+                    MenuController.AdminMenu();
                     break;
 
                 default:
