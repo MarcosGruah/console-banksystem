@@ -25,7 +25,7 @@ namespace BankSystemConsole.Class
             {
                 Console.WriteLine("Você deseja acessar o aplicativo como Administrador ou Usuário?\n");
                 Console.WriteLine("1 - Administrador");
-                Console.WriteLine("2 - Usuário\n");
+                Console.WriteLine("2 - Usuário (INDISPONÍVEL)\n");
 
                 string input = Console.ReadLine();
 

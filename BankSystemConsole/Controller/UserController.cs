@@ -15,8 +15,8 @@ namespace BankSystemConsole.Controller
             bool invalidPassword = true;
             Console.Clear();
 
-            userFullname = "Test Testson"; //ValidateUserFullname();
-            userCpf = "12345678912"; //ValidateUserCpf();
+            userFullname = ValidateUserFullname();
+            userCpf = ValidateUserCpf();
 
             userBirthDate = ValidateBirthDate();
 
@@ -230,6 +230,7 @@ namespace BankSystemConsole.Controller
 
         private static string ValidateUserCpf()
         {
+            string userInputCpf;
             string userCpf;
             bool invalidCpf = true;
             bool invalidCpfInput = true;
@@ -240,14 +241,14 @@ namespace BankSystemConsole.Controller
                 {
                     Console.WriteLine("Para criar a sua conta eu preciso dos seus seguintes dados: \n");
                     Console.Write("CPF: ");
-                    userCpf = Console.ReadLine();
-                    string validateInputCpf = Regex.Replace(userCpf, @"[^\d]", "");
+                    userInputCpf = Console.ReadLine();
+                    userCpf = Regex.Replace(userInputCpf, @"[^\d]", "");
 
-                    if (validateInputCpf.Length != 11)
+                    if (userCpf.Length != 11)
                     {
                         Console.Clear();
                         Console.WriteLine("CPF Invalido.\n");
-                        Console.WriteLine("Todo CPF precisa ter 11 digitos.\n");
+                        Console.WriteLine("Todo CPF precisa ter 11 dígitos.\n");
                     }
                     else
                     {
@@ -277,7 +278,7 @@ namespace BankSystemConsole.Controller
 
                         default:
                             UtilityController.InvalidOption();
-                            Console.WriteLine($"Seu CPF é o \"{UtilityController.FormatCpf(userCpf)}\" ?\n");
+                            Console.WriteLine($"Seu CPF é o \"{UtilityController.FormatCpf(userInputCpf)}\" ?\n");
                             Console.WriteLine("1 - Sim");
                             Console.WriteLine("2 - Não\n");
                             confirmCpf = Console.ReadLine();
@@ -298,45 +299,38 @@ namespace BankSystemConsole.Controller
                     }
 
                     int total = 0;
+                    int valor = 10;
 
                     for (int i = 0; i < 9; i++)
                     {
-                        total += cpfArray[i] * (i + 1);
+                        total += cpfArray[i] * valor;
+                        valor--;
                     }
 
-                    int primeiroDigitoVerificador = (total % 11) == 10 ? 0 : total % 11;
+                    int primeiroDigitoVerificador = (total * 10 % 11) == 10 ? 0 : total * 10 % 11;
 
                     total = 0;
+                    valor = 11;
 
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        total += cpfArray[i] * (i);
+                        total += cpfArray[i] * valor;
+                        valor--;
                     }
 
-                    total += primeiroDigitoVerificador * 9;
+                    int segundoDigitoVerificador = (total * 10 % 11) == 10 ? 0 : total * 10 % 11;
 
-                    int segundoDigitoVerificador = (total % 11) == 10 ? 0 : total % 11;
-
-                    string validatedUserCpf = "";
-
-                    for (int i = 0; i < 9; i++)
+                    if (cpfArray[9] == primeiroDigitoVerificador && cpfArray[10] == segundoDigitoVerificador)
                     {
-                        validatedUserCpf += cpfArray[i];
+                        invalidCpf = false;
+                        Console.Clear();
                     }
-
-                    validatedUserCpf += primeiroDigitoVerificador;
-                    validatedUserCpf += segundoDigitoVerificador;
-
-                    if (userCpf != validatedUserCpf)
+                    else
                     {
                         invalidCpf = true;
                         Console.Clear();
                         Console.WriteLine("CPF fornecido não passou pelo processo de validação.\n");
                         Console.WriteLine("Forneça um CPF válido ou desative a opção de validação de CPF nas configurações do programa.\n"); // TODO
-                    }
-                    else
-                    {
-                        Console.Clear();
                     }
                 }
                 if (!App.RealLifeCpfValidation)
